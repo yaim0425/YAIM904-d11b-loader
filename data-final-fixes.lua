@@ -67,18 +67,6 @@ function This_MOD.reference_values()
     --- Cargar la configuración
     This_MOD.setting = GMOD.setting[This_MOD.id] or {}
 
-    --- Indicador del mod
-    This_MOD.indicator = {
-        icon = data.raw["simple-entity"]["parameter-1"].icons[1].icon,
-        icon_size = 64,
-        scale = 0.25,
-        shift = { 8, -8 }
-    }
-
-    This_MOD.indicator_tech = GMOD.copy(This_MOD.indicator)
-    This_MOD.indicator_tech.shift = { 25, -25 }
-    This_MOD.indicator_tech.scale = 1
-
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
@@ -90,7 +78,46 @@ function This_MOD.reference_values()
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
     --- Entidad de referencia
-    This_MOD.lane_splitter = data.raw["lane-splitter"]["lane-splitter"]
+    This_MOD.loader = data.raw["loader-1x1"]["loader-1x1"]
+
+    --- Texto de referencia
+    This_MOD.under = "underground-belt"
+    This_MOD.subgroup = This_MOD.prefix .. This_MOD.name
+    This_MOD.to_find = string.gsub(This_MOD.under, "%-", "%%-")
+
+    --- Indicador del mod
+    This_MOD.path_graphics = "__" .. This_MOD.prefix .. This_MOD.name .. "__/graphics/"
+
+    This_MOD.icon = {
+        base = This_MOD.path_graphics .. "icon-base.png",
+        mask = This_MOD.path_graphics .. "icon-mask.png"
+    }
+
+    This_MOD.tech = {
+        base = This_MOD.path_graphics .. "tech-base.png",
+        mask = This_MOD.path_graphics .. "tech-mask.png"
+    }
+
+    This_MOD.entity = {
+        base = This_MOD.path_graphics .. "entity-base.png",
+        mask = This_MOD.path_graphics .. "entity-mask.png",
+        back = This_MOD.path_graphics .. "entity-back.png",
+        shadow = This_MOD.path_graphics .. "entity-shadow.png"
+    }
+
+    --- Colores a usar
+    This_MOD.colors = {
+        [""]             = { color = { r = 210, g = 180, b = 080 } },
+        ["fast-"]        = { color = { r = 210, g = 060, b = 060 } },
+        ["express-"]     = { color = { r = 080, g = 180, b = 210 } },
+        ["turbo-"]       = { color = { r = 160, g = 190, b = 080 } },
+
+        ["basic-"]       = { color = { r = 185, g = 185, b = 185 } },
+        ["supersonic-"]  = { color = { r = 213, g = 041, b = 209 } },
+
+        ["kr-advanced-"] = { color = { r = 160, g = 190, b = 080 } },
+        ["kr-superior-"] = { color = { r = 213, g = 041, b = 209 } },
+    }
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
