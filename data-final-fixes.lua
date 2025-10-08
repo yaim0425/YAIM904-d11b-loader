@@ -22,8 +22,8 @@ function This_MOD.start()
     --- Valores de la referencia
     This_MOD.reference_values()
 
-    -- --- Obtener los elementos
-    -- This_MOD.get_elements()
+    --- Obtener los elementos
+    This_MOD.get_elements()
 
     -- --- Modificar los elementos
     -- for _, spaces in pairs(This_MOD.to_be_processed) do
@@ -147,7 +147,6 @@ function This_MOD.get_elements()
         if GMOD.is_hidde(item) then return end
 
         --- Validar el tipo
-        if entity.type ~= "splitter" then return end
         if GMOD.is_hidde(entity) then return end
 
         --- Validar si ya fue procesado
@@ -161,6 +160,10 @@ function This_MOD.get_elements()
             That_MOD.name
 
         if GMOD.entities[Name] ~= nil then return end
+
+        --- Identificar el tier
+        local Tier = string.gsub(That_MOD.name, This_MOD.ref.to_find, "")
+        if not This_MOD.colors[Tier] then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -180,6 +183,8 @@ function This_MOD.get_elements()
         Space.recipe = GMOD.recipes[Space.item.name]
         Space.tech = GMOD.get_technology(Space.recipe)
         Space.recipe = Space.recipe and Space.recipe[1] or nil
+
+        Space.color = This_MOD.colors[Tier]
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -207,7 +212,7 @@ function This_MOD.get_elements()
     --- Preparar los datos a usar
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    for _, entity in pairs(data.raw.splitter) do
+    for _, entity in pairs(data.raw[This_MOD.under]) do
         valide_entity(GMOD.get_item_create(entity, "place_result"), entity)
     end
 
