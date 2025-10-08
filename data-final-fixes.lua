@@ -108,21 +108,21 @@ function This_MOD.reference_values()
     --- Colores a usar
     This_MOD.colors = {
         --- Base
-        [""]                      = { r = 210, g = 180, b = 080 },
-        ["fast-"]                 = { r = 210, g = 060, b = 060 },
-        ["express-"]              = { r = 080, g = 180, b = 210 },
-        ["turbo-"]                = { r = 160, g = 190, b = 080 },
+        [""]                       = { r = 210, g = 180, b = 080 },
+        ["fast-"]                  = { r = 210, g = 060, b = 060 },
+        ["express-"]               = { r = 080, g = 180, b = 210 },
+        ["turbo-"]                 = { r = 160, g = 190, b = 080 },
 
         --- Factorio+
-        ["basic-"]                = { r = 185, g = 185, b = 185 },
-        ["supersonic-"]           = { r = 213, g = 041, b = 209 },
+        ["basic-"]                 = { r = 185, g = 185, b = 185 },
+        ["supersonic-"]            = { r = 213, g = 041, b = 209 },
 
         --- Krastorio 2
-        ["kr-advanced-"]          = { r = 160, g = 190, b = 080 },
-        ["kr-superior-"]          = { r = 213, g = 041, b = 209 },
+        ["kr-advanced-"]           = { r = 160, g = 190, b = 080 },
+        ["kr-superior-"]           = { r = 213, g = 041, b = 209 },
 
         --- Space Exploration
-        ["se-space-"]             = { r = 200, g = 200, b = 200 },
+        ["se-space-"]              = { r = 200, g = 200, b = 200 },
         ["se-deep-space--black"]   = { r = 000, g = 000, b = 000 },
         ["se-deep-space--white"]   = { r = 255, g = 255, b = 255 },
         ["se-deep-space--red"]     = { r = 255, g = 000, b = 000 },
@@ -201,7 +201,14 @@ function This_MOD.get_elements()
         Space.recipe = Space.recipe and Space.recipe[1] or nil
 
         Space.color = This_MOD.colors[Tier]
-        Space.tier = Tier
+
+        Space.localised_name = string.gsub(That_MOD.name, This_MOD.to_find, "transport-belt")
+        Space.localised_name = {
+            "",
+            { "entity-name.loader" },
+            " - ",
+            { "entity-name." .. Space.localised_name }
+        }
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -271,8 +278,7 @@ function This_MOD.create_item(space)
     Item.name = space.name
 
     --- Apodo y descripción
-    local localised_name = { "entity-name." .. space.tier .. "transport-belt" }
-    Item.localised_name = { "", { "entity-name.loader" }, " - ", localised_name }
+    Item.localised_name = space.localised_name
     Item.localised_description = { "" }
 
     --- Entidad a crear
@@ -336,8 +342,7 @@ function This_MOD.create_entity(space)
     Entity.name = space.name
 
     --- Apodo y descripción
-    local localised_name = { "entity-name." .. space.tier .. "transport-belt" }
-    Entity.localised_name = { "", { "entity-name.loader" }, " - ", localised_name }
+    Entity.localised_name = space.localised_name
     Entity.localised_description = { "" }
 
     --- Cambiar el tipo
@@ -522,8 +527,7 @@ function This_MOD.create_recipe(space)
     Recipe.name = space.name
 
     --- Apodo y descripción
-    local localised_name = { "entity-name." .. space.tier .. "transport-belt" }
-    Recipe.localised_name = { "", { "entity-name.loader" }, " - ", localised_name }
+    Recipe.localised_name = space.localised_name
     Recipe.localised_description = { "" }
 
     --- Elimnar propiedades inecesarias
