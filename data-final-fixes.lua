@@ -25,20 +25,20 @@ function This_MOD.start()
     --- Obtener los elementos
     This_MOD.get_elements()
 
-    -- --- Modificar los elementos
-    -- for _, spaces in pairs(This_MOD.to_be_processed) do
-    --     for _, space in pairs(spaces) do
-    --         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Modificar los elementos
+    for _, spaces in pairs(This_MOD.to_be_processed) do
+        for _, space in pairs(spaces) do
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    --         -- --- Crear los elementos
-    --         -- This_MOD.create_item(space)
-    --         -- This_MOD.create_entity(space)
-    --         -- This_MOD.create_recipe(space)
-    --         -- This_MOD.create_tech(space)
+            --- Crear los elementos
+            This_MOD.create_item(space)
+            -- This_MOD.create_entity(space)
+            -- This_MOD.create_recipe(space)
+            -- This_MOD.create_tech(space)
 
-    --         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    --     end
-    -- end
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+        end
+    end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -187,6 +187,7 @@ function This_MOD.get_elements()
         Space.recipe = Space.recipe and Space.recipe[1] or nil
 
         Space.color = This_MOD.colors[Tier]
+        Space.tier = Tier
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -256,14 +257,18 @@ function This_MOD.create_item(space)
     Item.name = space.name
 
     --- Apodo y descripción
-    Item.localised_name = GMOD.copy(space.entity.localised_name)
-    Item.localised_description = GMOD.copy(This_MOD.lane_splitter.localised_description)
+    local localised_name = { "entity-name." .. space.tier .. "transport-belt" }
+    Item.localised_name = { "", { "entity-name.loader" }, " - ", localised_name }
+    Item.localised_description = { "" }
 
     --- Entidad a crear
     Item.place_result = space.name
 
-    --- Agregar indicador del MOD
-    table.insert(Item.icons, This_MOD.indicator)
+    --- Actualizar el icono
+    Item.icons = {
+        { icon = This_MOD.icon_graphics.base },
+        { icon = This_MOD.icon_graphics.mask, tint = space.color },
+    }
 
     --- Actualizar Order
     local Order = tonumber(Item.order) + 1
@@ -317,35 +322,97 @@ function This_MOD.create_entity(space)
     Entity.name = space.name
 
     --- Apodo y descripción
-    Entity.localised_name = GMOD.copy(space.entity.localised_name)
-    Entity.localised_description = GMOD.copy(This_MOD.lane_splitter.localised_description)
+    local localised_name = { "entity-name." .. space.tier .. "transport-belt" }
+    Entity.localised_name = { "", { "entity-name.loader" }, " - ", localised_name }
+    Entity.localised_description = { "" }
 
     --- Cambiar el tipo
-    Entity.type = This_MOD.lane_splitter.type
+    Entity.type = This_MOD.loader.type
 
     --- Elimnar propiedades inecesarias
     Entity.factoriopedia_simulation = nil
 
-    --- Cambiar icono
-    Entity.icons = GMOD.copy(space.item.icons)
-    table.insert(Entity.icons, This_MOD.indicator)
+    --- Actualizar el icono
+    Entity.icons = {
+        { icon = This_MOD.icon_graphics.base },
+        { icon = This_MOD.icon_graphics.mask, tint = space.color },
+    }
 
-    --- Copiar algunos valores
-    for _, propiety in pairs({
-        "collision_box",
-        "selection_box",
-        "fast_replaceable_group"
-    }) do
-        Entity[propiety] = This_MOD.lane_splitter[propiety]
-    end
-
-    for _, propiety in pairs({ "structure", "structure_patch" }) do
-        for key, newTable in pairs(Entity[propiety] or {}) do
-            local oldTable = This_MOD.lane_splitter[propiety][key] or {}
-            newTable.shift = oldTable.shift
-            newTable.scale = oldTable.scale
-        end
-    end
+    --- Cambiar la image
+    Entity.structure = {
+        back_patch = {
+            sheet = {
+                filename = This_MOD.entity_graphics.back,
+                priority = "extra-high",
+                shift = { 0, 0 },
+                height = 96,
+                width = 96,
+                scale = 0.5
+            }
+        },
+        direction_in = {
+            sheets = {
+                {
+                    draw_as_shadow = true,
+                    filename = This_MOD.entity_graphics.shadow,
+                    priority = "medium",
+                    shift = { 0.5, 0 },
+                    height = 96,
+                    width = 144,
+                    scale = 0.5
+                },
+                {
+                    filename = This_MOD.entity_graphics.base,
+                    priority = "extra-high",
+                    shift = { 0, 0 },
+                    height = 96,
+                    width = 96,
+                    scale = 0.5
+                },
+                {
+                    filename = This_MOD.entity_graphics.mask,
+                    priority = "extra-high",
+                    shift = { 0, 0 },
+                    height = 96,
+                    width = 96,
+                    scale = 0.5,
+                    tint = space.color
+                }
+            }
+        },
+        direction_out = {
+            sheets = {
+                {
+                    draw_as_shadow = true,
+                    filename = This_MOD.entity_graphics.shadow,
+                    priority = "medium",
+                    shift = { 0.5, 0 },
+                    height = 96,
+                    width = 144,
+                    scale = 0.5,
+                },
+                {
+                    filename = This_MOD.entity_graphics.base,
+                    priority = "extra-high",
+                    shift = { 0, 0 },
+                    height = 96,
+                    width = 96,
+                    scale = 0.5,
+                    y = 96,
+                },
+                {
+                    filename = This_MOD.entity_graphics.mask,
+                    priority = "extra-high",
+                    shift = { 0, 0 },
+                    height = 96,
+                    width = 96,
+                    scale = 0.5,
+                    tint = space.color,
+                    y = 96
+                }
+            }
+        }
+    }
 
     --- Objeto a minar
     Entity.minable.results = { {
@@ -364,11 +431,16 @@ function This_MOD.create_entity(space)
             GMOD.get_id_and_name(Entity.next_upgrade) or
             { ids = "-", name = Entity.next_upgrade }
 
+        --- Identificar el tier
+        local Tier = string.gsub(That_MOD.name, This_MOD.to_find, "")
+        if not This_MOD.colors[Tier] then return end
+
         --- Nombre despues del aplicar el MOD
         local New_name =
             GMOD.name .. That_MOD.ids ..
             This_MOD.id .. "-" ..
-            That_MOD.name
+            Tier ..
+            "loader"
 
         --- La entidad ya existe
         if GMOD.entities[New_name] ~= nil then
