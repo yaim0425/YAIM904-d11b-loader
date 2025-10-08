@@ -107,16 +107,30 @@ function This_MOD.reference_values()
 
     --- Colores a usar
     This_MOD.colors = {
-        [""]             = { r = 210, g = 180, b = 080 },
-        ["fast-"]        = { r = 210, g = 060, b = 060 },
-        ["express-"]     = { r = 080, g = 180, b = 210 },
-        ["turbo-"]       = { r = 160, g = 190, b = 080 },
+        --- Base
+        [""]                      = { r = 210, g = 180, b = 080 },
+        ["fast-"]                 = { r = 210, g = 060, b = 060 },
+        ["express-"]              = { r = 080, g = 180, b = 210 },
+        ["turbo-"]                = { r = 160, g = 190, b = 080 },
 
-        ["basic-"]       = { r = 185, g = 185, b = 185 },
-        ["supersonic-"]  = { r = 213, g = 041, b = 209 },
+        --- Factorio+
+        ["basic-"]                = { r = 185, g = 185, b = 185 },
+        ["supersonic-"]           = { r = 213, g = 041, b = 209 },
 
-        ["kr-advanced-"] = { r = 160, g = 190, b = 080 },
-        ["kr-superior-"] = { r = 213, g = 041, b = 209 }
+        --- Krastorio 2
+        ["kr-advanced-"]          = { r = 160, g = 190, b = 080 },
+        ["kr-superior-"]          = { r = 213, g = 041, b = 209 },
+
+        --- Space Exploration
+        ["se-space-"]             = { r = 200, g = 200, b = 200 },
+        ["se-deep-space--black"]   = { r = 000, g = 000, b = 000 },
+        ["se-deep-space--white"]   = { r = 255, g = 255, b = 255 },
+        ["se-deep-space--red"]     = { r = 255, g = 000, b = 000 },
+        ["se-deep-space--magenta"] = { r = 255, g = 000, b = 255 },
+        ["se-deep-space--blue"]    = { r = 000, g = 000, b = 255 },
+        ["se-deep-space--cyan"]    = { r = 000, g = 255, b = 255 },
+        ["se-deep-space--green"]   = { r = 000, g = 255, b = 000 },
+        ["se-deep-space--yellow"]  = { r = 255, g = 255, b = 000 },
     }
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
