@@ -88,17 +88,17 @@ function This_MOD.reference_values()
     --- Indicador del mod
     This_MOD.path_graphics = "__" .. This_MOD.prefix .. This_MOD.name .. "__/graphics/"
 
-    This_MOD.icon = {
+    This_MOD.icon_graphics = {
         base = This_MOD.path_graphics .. "icon-base.png",
         mask = This_MOD.path_graphics .. "icon-mask.png"
     }
 
-    This_MOD.tech = {
+    This_MOD.tech_graphics = {
         base = This_MOD.path_graphics .. "tech-base.png",
         mask = This_MOD.path_graphics .. "tech-mask.png"
     }
 
-    This_MOD.entity = {
+    This_MOD.entity_graphics = {
         base = This_MOD.path_graphics .. "entity-base.png",
         mask = This_MOD.path_graphics .. "entity-mask.png",
         back = This_MOD.path_graphics .. "entity-back.png",
