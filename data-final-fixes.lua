@@ -34,7 +34,7 @@ function This_MOD.start()
             This_MOD.create_item(space)
             This_MOD.create_entity(space)
             This_MOD.create_recipe(space)
-            -- This_MOD.create_tech(space)
+            This_MOD.create_tech(space)
 
             --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         end
@@ -196,18 +196,19 @@ function This_MOD.get_elements()
         Space.entity = entity
         Space.name = Name
 
+        Space.belt = string.gsub(That_MOD.name, This_MOD.to_find, "transport-belt")
+        Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt])
+
         Space.recipe = GMOD.recipes[Space.item.name]
-        Space.tech = GMOD.get_technology(Space.recipe)
         Space.recipe = Space.recipe and Space.recipe[1] or nil
 
         Space.color = This_MOD.colors[Tier]
 
-        Space.localised_name = string.gsub(That_MOD.name, This_MOD.to_find, "transport-belt")
         Space.localised_name = {
             "",
             { "entity-name.loader" },
             " - ",
-            { "entity-name." .. Space.localised_name }
+            { "entity-name." .. Space.belt }
         }
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -636,12 +637,14 @@ function This_MOD.create_tech(space)
     Tech.name = space.name .. "-tech"
 
     --- Apodo y descripción
-    Tech.localised_name = GMOD.copy(space.entity.localised_name)
-    Tech.localised_description = GMOD.copy(This_MOD.lane_splitter.localised_description)
+    Tech.localised_name = space.localised_name
+    Tech.localised_description = {""}
 
     --- Cambiar icono
-    Tech.icons = GMOD.copy(space.item.icons)
-    table.insert(Tech.icons, This_MOD.indicator_tech)
+    Tech.icons = {
+        { icon = This_MOD.tech_graphics.base, icon_size = 128 },
+        { icon = This_MOD.tech_graphics.mask, tint = space.color, icon_size = 128 },
+    }
 
     --- Tech previas
     Tech.prerequisites = { space.tech.name }
@@ -656,25 +659,11 @@ function This_MOD.create_tech(space)
     if Tech.research_trigger then
         Tech.research_trigger = {
             type = "craft-item",
-            item = space.item.name,
+            item = space.belt,
             count = 1
         }
     end
 
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
-
-
-
-
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    -- --- Agregar a la tecnología
-    -- local Tech = GPrefix.create_tech(This_MOD.prefix, space.tech, Recipe)
-    -- Tech.localised_description = { "entity-description." .. This_MOD.prefix .. "loader" }
-    -- Tech.icons = {
-    --     { icon = This_MOD.graphics.tech.base, icon_size = 128 },
-    --     { icon = This_MOD.graphics.tech.mask, tint = space.color, icon_size = 128 },
-    -- }
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
