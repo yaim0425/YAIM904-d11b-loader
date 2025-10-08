@@ -173,11 +173,11 @@ function This_MOD.get_elements()
         if not This_MOD.colors[Tier] then return end
 
         --- Validar si ya fue procesado
-        local Name =
+        local Name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
+        Name =
             GMOD.name .. That_MOD.ids ..
             This_MOD.id .. "-" ..
-            Tier ..
-            "loader"
+            Name
 
         if GMOD.entities[Name] ~= nil then return end
 
@@ -458,11 +458,11 @@ function This_MOD.create_entity(space)
         if not This_MOD.colors[Tier] then return end
 
         --- Nombre despues del aplicar el MOD
-        local New_name =
+        local New_name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
+        New_name =
             GMOD.name .. That_MOD.ids ..
             This_MOD.id .. "-" ..
-            Tier ..
-            "loader"
+            New_name
 
         --- La entidad ya existe
         if GMOD.entities[New_name] ~= nil then
@@ -558,11 +558,11 @@ function This_MOD.create_recipe(space)
             if not This_MOD.colors[Tier] then return end
 
             --- Nombre despues del aplicar el MOD
-            local New_name =
+            local New_name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
+            New_name =
                 GMOD.name .. That_MOD.ids ..
                 This_MOD.id .. "-" ..
-                Tier ..
-                "loader"
+                New_name
 
             --- La entidad ya existe
             if GMOD.entities[New_name] ~= nil then
