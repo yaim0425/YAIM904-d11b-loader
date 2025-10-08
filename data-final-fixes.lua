@@ -162,7 +162,7 @@ function This_MOD.get_elements()
         if GMOD.entities[Name] ~= nil then return end
 
         --- Identificar el tier
-        local Tier = string.gsub(That_MOD.name, This_MOD.ref.to_find, "")
+        local Tier = string.gsub(That_MOD.name, This_MOD.to_find, "")
         if not This_MOD.colors[Tier] then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
