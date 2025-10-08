@@ -32,7 +32,7 @@ function This_MOD.start()
 
             --- Crear los elementos
             This_MOD.create_item(space)
-            -- This_MOD.create_entity(space)
+            This_MOD.create_entity(space)
             -- This_MOD.create_recipe(space)
             -- This_MOD.create_tech(space)
 
@@ -271,7 +271,7 @@ function This_MOD.create_item(space)
     }
 
     --- Actualizar Order
-    local Order = tonumber(Item.order) + 1
+    local Order = tonumber(Item.order) + 2 * (10 ^ (#Item.order - 1))
     Item.order = GMOD.pad_left_zeros(#Item.order, Order)
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -328,6 +328,9 @@ function This_MOD.create_entity(space)
 
     --- Cambiar el tipo
     Entity.type = This_MOD.loader.type
+
+    --- Espacios para el filtrado
+    Entity.filter_count = 5
 
     --- Elimnar propiedades inecesarias
     Entity.factoriopedia_simulation = nil
