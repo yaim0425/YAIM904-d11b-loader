@@ -107,16 +107,16 @@ function This_MOD.reference_values()
 
     --- Colores a usar
     This_MOD.colors = {
-        [""]             = { color = { r = 210, g = 180, b = 080 } },
-        ["fast-"]        = { color = { r = 210, g = 060, b = 060 } },
-        ["express-"]     = { color = { r = 080, g = 180, b = 210 } },
-        ["turbo-"]       = { color = { r = 160, g = 190, b = 080 } },
+        [""]             = { r = 210, g = 180, b = 080 },
+        ["fast-"]        = { r = 210, g = 060, b = 060 },
+        ["express-"]     = { r = 080, g = 180, b = 210 },
+        ["turbo-"]       = { r = 160, g = 190, b = 080 },
 
-        ["basic-"]       = { color = { r = 185, g = 185, b = 185 } },
-        ["supersonic-"]  = { color = { r = 213, g = 041, b = 209 } },
+        ["basic-"]       = { r = 185, g = 185, b = 185 },
+        ["supersonic-"]  = { r = 213, g = 041, b = 209 },
 
-        ["kr-advanced-"] = { color = { r = 160, g = 190, b = 080 } },
-        ["kr-superior-"] = { color = { r = 213, g = 041, b = 209 } },
+        ["kr-advanced-"] = { r = 160, g = 190, b = 080 },
+        ["kr-superior-"] = { r = 213, g = 041, b = 209 }
     }
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
