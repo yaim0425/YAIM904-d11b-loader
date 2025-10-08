@@ -149,21 +149,23 @@ function This_MOD.get_elements()
         --- Validar el tipo
         if GMOD.is_hidde(entity) then return end
 
-        --- Validar si ya fue procesado
+        --- Procesar el nombre
         local That_MOD =
             GMOD.get_id_and_name(entity.name) or
             { ids = "-", name = entity.name }
 
-        local Name =
-            GMOD.name .. That_MOD.ids ..
-            This_MOD.id .. "-" ..
-            That_MOD.name
-
-        if GMOD.entities[Name] ~= nil then return end
-
         --- Identificar el tier
         local Tier = string.gsub(That_MOD.name, This_MOD.to_find, "")
         if not This_MOD.colors[Tier] then return end
+
+        --- Validar si ya fue procesado
+        local Name =
+            GMOD.name .. That_MOD.ids ..
+            This_MOD.id .. "-" ..
+            Tier ..
+            "loader"
+
+        if GMOD.entities[Name] ~= nil then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
