@@ -33,7 +33,7 @@ function This_MOD.start()
             --- Crear los elementos
             This_MOD.create_item(space)
             This_MOD.create_entity(space)
-            -- This_MOD.create_recipe(space)
+            This_MOD.create_recipe(space)
             -- This_MOD.create_tech(space)
 
             --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -508,26 +508,21 @@ function This_MOD.create_recipe(space)
     Recipe.name = space.name
 
     --- Apodo y descripción
-    Recipe.localised_name = GMOD.copy(space.entity.localised_name)
-    Recipe.localised_description = GMOD.copy(This_MOD.lane_splitter.localised_description)
+    local localised_name = { "entity-name." .. space.tier .. "transport-belt" }
+    Recipe.localised_name = { "", { "entity-name.loader" }, " - ", localised_name }
+    Recipe.localised_description = { "" }
 
     --- Elimnar propiedades inecesarias
     Recipe.main_product = nil
 
-    --- Productividad
-    Recipe.allow_productivity = true
-    Recipe.maximum_productivity = 1000000
-
     --- Cambiar icono
-    Recipe.icons = GMOD.copy(space.item.icons)
-    table.insert(Recipe.icons, This_MOD.indicator)
+    Recipe.icons = {
+        { icon = This_MOD.icon_graphics.base },
+        { icon = This_MOD.icon_graphics.mask, tint = space.color },
+    }
 
     --- Habilitar la receta
     Recipe.enabled = space.tech == nil
-
-    --- Actualizar Order
-    local Order = tonumber(Recipe.order) + 1
-    Recipe.order = GMOD.pad_left_zeros(#Recipe.order, Order)
 
     --- Ingredientes
     for _, ingredient in pairs(Recipe.ingredients) do
@@ -540,11 +535,16 @@ function This_MOD.create_recipe(space)
                 GMOD.get_id_and_name(name) or
                 { ids = "-", name = name }
 
-            --- Nombre despues de aplicar el MOD
+            --- Identificar el tier
+            local Tier = string.gsub(That_MOD.name, This_MOD.to_find, "")
+            if not This_MOD.colors[Tier] then return end
+
+            --- Nombre despues del aplicar el MOD
             local New_name =
                 GMOD.name .. That_MOD.ids ..
                 This_MOD.id .. "-" ..
-                That_MOD.name
+                Tier ..
+                "loader"
 
             --- La entidad ya existe
             if GMOD.entities[New_name] ~= nil then
@@ -643,6 +643,20 @@ function This_MOD.create_tech(space)
         }
     end
 
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    -- --- Agregar a la tecnología
+    -- local Tech = GPrefix.create_tech(This_MOD.prefix, space.tech, Recipe)
+    -- Tech.localised_description = { "entity-description." .. This_MOD.prefix .. "loader" }
+    -- Tech.icons = {
+    --     { icon = This_MOD.graphics.tech.base, icon_size = 128 },
+    --     { icon = This_MOD.graphics.tech.mask, tint = space.color, icon_size = 128 },
+    -- }
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
