@@ -488,7 +488,9 @@ function This_MOD.create_entity(space)
     Entity.container_distance = 1
 
     --- Tamaño del apilable a aplicar
-    Entity.max_belt_stack_size = Entity.max_belt_stack_size or 10
+    if mods["space-age"] then
+        Entity.max_belt_stack_size = Entity.max_belt_stack_size or 10
+    end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
