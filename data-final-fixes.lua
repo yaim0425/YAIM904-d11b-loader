@@ -490,22 +490,22 @@ function This_MOD.create_entity(space)
         if not This_MOD.colors[Tier] then return end
 
         --- Nombre despues del aplicar el MOD
-        local New_name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
-        New_name =
+        local Name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
+        Name =
             GMOD.name .. That_MOD.ids ..
             This_MOD.id .. "-" ..
-            New_name
+            Name
 
         --- La entidad ya existe
-        if GMOD.entities[New_name] ~= nil then
-            return New_name
+        if GMOD.entities[Name] ~= nil then
+            return Name
         end
 
         --- La entidad existirá
         for _, Spaces in pairs(This_MOD.to_be_processed) do
             for _, Space in pairs(Spaces) do
                 if Space.entity.name == Entity.next_upgrade then
-                    return New_name
+                    return Name
                 end
             end
         end
@@ -598,22 +598,22 @@ function This_MOD.create_recipe(space)
             if not This_MOD.colors[Tier] then return end
 
             --- Nombre despues del aplicar el MOD
-            local New_name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
-            New_name =
+            local Name = string.gsub(That_MOD.name, This_MOD.to_find, "loader")
+            Name =
                 GMOD.name .. That_MOD.ids ..
                 This_MOD.id .. "-" ..
-                New_name
+                Name
 
             --- La entidad ya existe
-            if GMOD.entities[New_name] ~= nil then
-                return New_name
+            if GMOD.entities[Name] ~= nil then
+                return Name
             end
 
             --- La entidad existirá
             for _, Spaces in pairs(This_MOD.to_be_processed) do
                 for _, Space in pairs(Spaces) do
                     if Space.entity.name == name then
-                        return New_name
+                        return Name
                     end
                 end
             end
