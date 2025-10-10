@@ -67,19 +67,22 @@ function This_MOD.reference_values()
     --- Cargar la configuración
     This_MOD.setting = GMOD.setting[This_MOD.id] or {}
 
-    --- Imagenes del mod
+    --- Ruta de las imagenes
     This_MOD.path_graphics = "__" .. This_MOD.prefix .. This_MOD.name .. "__/graphics/"
 
+    --- Imagenes para los iconos
     This_MOD.icon_graphics = {
         base = This_MOD.path_graphics .. "icon-base.png",
         mask = This_MOD.path_graphics .. "icon-mask.png"
     }
 
+    --- Imagenes para las tech
     This_MOD.tech_graphics = {
         base = This_MOD.path_graphics .. "tech-base.png",
         mask = This_MOD.path_graphics .. "tech-mask.png"
     }
 
+    --- Imagenes para las entidades
     This_MOD.entity_graphics = {
         base = This_MOD.path_graphics .. "entity-base.png",
         mask = This_MOD.path_graphics .. "entity-mask.png",
