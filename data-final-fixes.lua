@@ -483,6 +483,9 @@ function This_MOD.create_entity(space)
     --- Distancia del contenedor
     Entity.container_distance = 1
 
+    --- Tamaño del apilable a aplicar
+    Entity.max_belt_stack_size = Entity.max_belt_stack_size or 10
+
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
