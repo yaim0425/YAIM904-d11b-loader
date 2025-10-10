@@ -31,6 +31,7 @@ function This_MOD.start()
             --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
             --- Crear los elementos
+            This_MOD.create_subgroup(space)
             This_MOD.create_item(space)
             This_MOD.create_entity(space)
             This_MOD.create_recipe(space)
@@ -105,9 +106,12 @@ function This_MOD.reference_values()
 
     --- Texto de referencia
     This_MOD.under = "underground-belt"
-    This_MOD.subgroup = This_MOD.prefix .. This_MOD.name
     This_MOD.to_find = string.gsub(This_MOD.under, "%-", "%%-")
     This_MOD.item_tech = "transport-belt"
+
+    --- Subgrupo
+    This_MOD.new_subgroup = This_MOD.prefix .. This_MOD.name
+    This_MOD.old_subgroup = GMOD.items["splitter"].subgroup
 
     --- Colores a usar
     This_MOD.colors = {
@@ -250,6 +254,30 @@ end
 
 ---------------------------------------------------------------------------
 
+function This_MOD.create_subgroup(space)
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Validación
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    if not space.item then return end
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Crear un nuevo subgrupo
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    local Old = This_MOD.old_subgroup
+    local New = This_MOD.new_subgroup
+    GMOD.duplicate_subgroup(Old, New)
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+end
+
 function This_MOD.create_item(space)
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
     --- Validación
@@ -295,9 +323,8 @@ function This_MOD.create_item(space)
         { icon = This_MOD.icon_graphics.mask, tint = space.color },
     }
 
-    --- Actualizar Order
-    local Order = tonumber(Item.order) + 2 * (10 ^ (#Item.order - 1))
-    Item.order = GMOD.pad_left_zeros(#Item.order, Order)
+    --- Actualizar el subgrupo
+    Item.subgroup = This_MOD.new_subgroup
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
