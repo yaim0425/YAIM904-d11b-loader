@@ -638,7 +638,7 @@ function This_MOD.create_tech(space)
 
     --- Apodo y descripción
     Tech.localised_name = space.localised_name
-    Tech.localised_description = {""}
+    Tech.localised_description = { "" }
 
     --- Cambiar icono
     Tech.icons = {
@@ -647,7 +647,13 @@ function This_MOD.create_tech(space)
     }
 
     --- Tech previas
-    Tech.prerequisites = { space.tech.name }
+    Tech.prerequisites = {}
+    for _, ingredient in pairs(data.raw.recipe[space.name].ingredients) do
+        local tech = GMOD.get_technology(GMOD.recipes[ingredient.name])
+        if tech and not GMOD.get_key(Tech.prerequisites, tech.name) then
+            table.insert(Tech.prerequisites, tech.name)
+        end
+    end
 
     --- Efecto de la tech
     Tech.effects = { {
