@@ -67,25 +67,7 @@ function This_MOD.reference_values()
     --- Cargar la configuración
     This_MOD.setting = GMOD.setting[This_MOD.id] or {}
 
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
-
-
-
-
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    --- Valores de la referencia en este MOD
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
-    --- Entidad de referencia
-    This_MOD.loader = data.raw["loader-1x1"]["loader-1x1"]
-
-    --- Texto de referencia
-    This_MOD.under = "underground-belt"
-    This_MOD.subgroup = This_MOD.prefix .. This_MOD.name
-    This_MOD.to_find = string.gsub(This_MOD.under, "%-", "%%-")
-
-    --- Indicador del mod
+    --- Imagenes del mod
     This_MOD.path_graphics = "__" .. This_MOD.prefix .. This_MOD.name .. "__/graphics/"
 
     This_MOD.icon_graphics = {
@@ -104,6 +86,24 @@ function This_MOD.reference_values()
         back = This_MOD.path_graphics .. "entity-back.png",
         shadow = This_MOD.path_graphics .. "entity-shadow.png"
     }
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Valores de la referencia en este MOD
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    --- Entidad de referencia
+    This_MOD.loader = data.raw["loader-1x1"]["loader-1x1"]
+
+    --- Texto de referencia
+    This_MOD.under = "underground-belt"
+    This_MOD.subgroup = This_MOD.prefix .. This_MOD.name
+    This_MOD.to_find = string.gsub(This_MOD.under, "%-", "%%-")
 
     --- Colores a usar
     This_MOD.colors = {
