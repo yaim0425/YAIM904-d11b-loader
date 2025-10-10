@@ -480,6 +480,9 @@ function This_MOD.create_entity(space)
         end
     end)()
 
+    --- Distancia del contenedor
+    Entity.container_distance = 1
+
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
