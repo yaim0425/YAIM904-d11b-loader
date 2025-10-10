@@ -107,6 +107,7 @@ function This_MOD.reference_values()
     This_MOD.under = "underground-belt"
     This_MOD.subgroup = This_MOD.prefix .. This_MOD.name
     This_MOD.to_find = string.gsub(This_MOD.under, "%-", "%%-")
+    This_MOD.item_tech = "transport-belt"
 
     --- Colores a usar
     This_MOD.colors = {
@@ -199,7 +200,7 @@ function This_MOD.get_elements()
         Space.entity = entity
         Space.name = Name
 
-        Space.belt = string.gsub(That_MOD.name, This_MOD.to_find, "transport-belt")
+        Space.belt = string.gsub(That_MOD.name, This_MOD.to_find, This_MOD.item_tech)
         Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt])
 
         Space.recipe = GMOD.recipes[Space.item.name]
