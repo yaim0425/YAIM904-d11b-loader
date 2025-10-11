@@ -476,14 +476,14 @@ function This_MOD.create_entity(space)
     } }
 
     --- Siguiente tier
-    Entity.next_upgrade = (function()
+    Entity.next_upgrade = (function(entity)
         --- Validación
-        if not Entity.next_upgrade then return end
+        if not entity then return end
 
         --- Procesar el nombre
         local That_MOD =
-            GMOD.get_id_and_name(Entity.next_upgrade) or
-            { ids = "-", name = Entity.next_upgrade }
+            GMOD.get_id_and_name(entity) or
+            { ids = "-", name = entity }
 
         --- Identificar el tier
         local Tier = string.gsub(That_MOD.name, This_MOD.to_find, "")
@@ -504,12 +504,12 @@ function This_MOD.create_entity(space)
         --- La entidad existirá
         for _, Spaces in pairs(This_MOD.to_be_processed) do
             for _, Space in pairs(Spaces) do
-                if Space.entity.name == Entity.next_upgrade then
+                if Space.entity.name == entity then
                     return Name
                 end
             end
         end
-    end)()
+    end)(Entity.next_upgrade)
 
     --- Distancia del contenedor
     Entity.container_distance = 1
