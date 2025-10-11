@@ -686,11 +686,10 @@ function This_MOD.create_tech(space)
     }
 
     --- Tech previas
-    Tech.prerequisites = {}
+    Tech.prerequisites = { space.tech.name }
     for _, ingredient in pairs(data.raw.recipe[space.name].ingredients) do
-        local tech = GMOD.get_technology(GMOD.recipes[ingredient.name])
-        if tech and not GMOD.get_key(Tech.prerequisites, tech.name) then
-            table.insert(Tech.prerequisites, tech.name)
+        if GMOD.has_id(ingredient.name, This_MOD.id) then
+            Tech.prerequisites = { ingredient.name .. "-tech" }
         end
     end
 
