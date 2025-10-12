@@ -692,7 +692,9 @@ function This_MOD.create_tech(space)
             if Tech.prerequisites[1] == space.tech.name then
                 Tech.prerequisites = {}
             end
-            table.insert(Tech.prerequisites, ingredient.name .. "-tech")
+            if data.raw.technology[ingredient.name .. "-tech"] then
+                table.insert(Tech.prerequisites, ingredient.name .. "-tech")
+            end
         end
     end
 
