@@ -624,7 +624,7 @@ function This_MOD.create_recipe(space)
     Recipe.results = { {
         type = "item",
         name = space.name,
-        amount = 1
+        amount = 2
     } }
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
