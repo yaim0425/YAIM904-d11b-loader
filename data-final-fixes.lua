@@ -576,14 +576,17 @@ function This_MOD.create_recipe(space)
     --- Elimnar propiedades inecesarias
     Recipe.main_product = nil
 
+    --- Habilitar la receta
+    Recipe.enabled = space.tech == nil
+
+    --- Actualizar el subgrupo
+    Recipe.subgroup = This_MOD.new_subgroup
+
     --- Cambiar icono
     Recipe.icons = {
         { icon = This_MOD.icon_graphics.base },
         { icon = This_MOD.icon_graphics.mask, tint = space.color },
     }
-
-    --- Habilitar la receta
-    Recipe.enabled = space.tech == nil
 
     --- Ingredientes
     for _, ingredient in pairs(Recipe.ingredients) do
