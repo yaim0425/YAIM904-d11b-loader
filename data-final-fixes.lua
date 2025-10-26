@@ -248,7 +248,7 @@ function This_MOD.get_elements()
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
     for _, entity in pairs(data.raw[This_MOD.under]) do
-        validate_entity(GMOD.get_item_create(entity, GMOD.parameter.get_item_create.place_result), entity)
+        validate_entity(GMOD.get_item_create(entity, "place_result"), entity)
     end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
