@@ -161,7 +161,7 @@ function This_MOD.get_elements()
     --- Función para analizar cada entidad
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    local function valide_entity(item, entity)
+    local function validate_entity(item, entity)
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         --- Validación
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -189,7 +189,7 @@ function This_MOD.get_elements()
             This_MOD.id .. "-" ..
             Name
 
-        if GMOD.entities[Name] ~= nil then return end
+        if GMOD.entities[Name] then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -248,7 +248,7 @@ function This_MOD.get_elements()
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
     for _, entity in pairs(data.raw[This_MOD.under]) do
-        valide_entity(GMOD.get_item_create(entity, GMOD.parameter.get_item_create.place_result), entity)
+        validate_entity(GMOD.get_item_create(entity, "place_result"), entity)
     end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -487,9 +487,7 @@ function This_MOD.create_entity(space)
             Name
 
         --- La entidad ya existe
-        if GMOD.entities[Name] ~= nil then
-            return Name
-        end
+        if GMOD.entities[Name] then return Name end
 
         --- La entidad existirá
         for _, Spaces in pairs(This_MOD.to_be_processed) do
@@ -598,9 +596,7 @@ function This_MOD.create_recipe(space)
                 Name
 
             --- La entidad ya existe
-            if GMOD.entities[Name] ~= nil then
-                return Name
-            end
+            if GMOD.entities[Name] then return Name end
 
             --- La entidad existirá
             for _, Spaces in pairs(This_MOD.to_be_processed) do
