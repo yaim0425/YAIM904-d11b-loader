@@ -38,12 +38,27 @@ No configuration is required. Place the loader where items need to move in or ou
 
 ## 🔗 Repository
 
-* GitHub: [https://github.com/yaim0425/YAIM0425-d11b-loader](https://github.com/yaim0425/YAIM0425-d11b-loader)
+**MOD**
+[YAIM0425 d11b Loader](https://github.com/yaim0425/YAIM0425-d11b-loader)
+
+**Required**
+
+[YAIM0425 d00b Core](https://github.com/yaim0425/YAIM0425-d00b-core)
+
+---
+
+## ❤️ Support
+
+Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
 
 ---
 
 ## 🖼️ Screenshots
 
-![Loader Screenshot 1](screenshot/\(1\).png)
+![Screenshot 1](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(1).png)
 
----
+![Screenshot 2](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(2).png)
+
+![Screenshot 3](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(3).png)
+
+![Screenshot 4](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(4).png)
