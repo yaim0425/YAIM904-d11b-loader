@@ -207,7 +207,7 @@ function This_MOD.get_elements()
         Space.name = Name
 
         Space.belt = string.gsub(That_MOD.name, This_MOD.to_find, This_MOD.item_tech)
-        Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt])
+        Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt], true)
 
         Space.recipe = GMOD.recipes[Space.item.name]
         Space.recipe = Space.recipe and Space.recipe[1] or nil
