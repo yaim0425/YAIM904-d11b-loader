@@ -1,8 +1,8 @@
-# YAIM0425 d11b – Loader 📥📤
+# YAIM904 d11b – Loader 📥📤
 
 ## 📦 Description
 
-**YAIM0425 d11b – Loader** adds a dedicated **loader entity** designed to simplify the **input and output of items** between belts, factories, chests, and other entities.
+**YAIM904 d11b – Loader** adds a dedicated **loader entity** designed to simplify the **input and output of items** between belts, factories, chests, and other entities.
 
 This MOD focuses on cleaner builds and more efficient item transfer, reducing the need for complex belt or inserter setups.
 
@@ -39,11 +39,11 @@ No configuration is required. Place the loader where items need to move in or ou
 ## 🔗 Repository
 
 **MOD**
-[YAIM0425 d11b Loader](https://github.com/yaim0425/YAIM0425-d11b-loader)
+[YAIM904 d11b Loader](https://github.com/yaim0425/YAIM904-d11b-loader)
 
 **Required**
 
-[YAIM0425 d00b Core](https://github.com/yaim0425/YAIM0425-d00b-core)
+[YAIM904 d00b Core](https://github.com/yaim0425/YAIM904-d00b-core)
 
 ---
 
@@ -55,10 +55,10 @@ Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
 
 ## 🖼️ Screenshots
 
-![Screenshot 1](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(1).png)
+![Screenshot 1](https://github.com/yaim0425/YAIM904-d11b-loader/raw/code/screenshot/(1).png)
 
-![Screenshot 2](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(2).png)
+![Screenshot 2](https://github.com/yaim0425/YAIM904-d11b-loader/raw/code/screenshot/(2).png)
 
-![Screenshot 3](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(3).png)
+![Screenshot 3](https://github.com/yaim0425/YAIM904-d11b-loader/raw/code/screenshot/(3).png)
 
-![Screenshot 4](https://github.com/yaim0425/YAIM0425-d11b-loader/raw/code/screenshot/(4).png)
+![Screenshot 4](https://github.com/yaim0425/YAIM904-d11b-loader/raw/code/screenshot/(4).png)

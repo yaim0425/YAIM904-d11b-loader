@@ -1,12 +1,12 @@
 {
-  "name": "YAIM0425-d11b-loader",
+  "name": "YAIM904-d11b-loader",
   "version": "0.0.1",
-  "title": "YAIM0425 d11b Loader",
-  "author": "YAIM0425",
+  "title": "YAIM904 d11b Loader",
+  "author": "YAIM904",
   "factorio_version": "2.0",
   "description": "Creates an entity that facilitates the input and output of materials in factories, chests and other entities. [[I accept suggestions]]",
-  "homepage": "https://github.com/yaim0425/YAIM0425-d11b-loader",
+  "homepage": "https://github.com/yaim0425/YAIM904-d11b-loader",
   "dependencies": [
-    "YAIM0425-d00b-core"
+    "YAIM904-d00b-core"
   ]
 }
