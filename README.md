@@ -1,8 +1,10 @@
 # YAIM904 d11b – Loader 📥📤
 
+---
+
 ## 📦 Description
 
-**YAIM904 d11b – Loader** adds a dedicated **loader entity** designed to simplify the **input and output of items** between belts, factories, chests, and other entities.
+**YAIM904 d11b – Loader** adds a dedicated **loader entity** designed to simplify the **input and output of items** between belts, factories, chests and other entities.
 
 This MOD focuses on cleaner builds and more efficient item transfer, reducing the need for complex belt or inserter setups.
 
@@ -49,7 +51,7 @@ No configuration is required. Place the loader where items need to move in or ou
 
 ## ❤️ Support
 
-Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
+Suggestions, ideas and balance feedback are welcome on the GitHub repository.
 
 ---
 
