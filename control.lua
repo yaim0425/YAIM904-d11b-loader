@@ -96,8 +96,10 @@ function This_MOD.load_events()
     --- Al crear la entidad
     script.on_event({
         defines.events.on_built_entity,
+        defines.events.on_robot_built_entity,
         defines.events.script_raised_built,
         defines.events.script_raised_revive,
+        defines.events.on_space_platform_built_entity,
     }, function(event)
         This_MOD.create_entity(GMOD.create_data(event, This_MOD))
     end)
