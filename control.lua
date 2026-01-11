@@ -104,12 +104,6 @@ function This_MOD.load_events()
         This_MOD.create_entity(GMOD.create_data(event, This_MOD))
     end)
 
-    script.on_event({
-        defines.events.on_player_setup_blueprint
-    }, function(event)
-        This_MOD.create_blueprint(GMOD.create_data(event, This_MOD))
-    end)
-
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
 
@@ -132,6 +126,14 @@ function This_MOD.create_entity(Data)
     --- Validación
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
+    --- Fantasma
+    if Entity.name == "entity-ghost" then
+        if not GMOD.has_id(Entity.ghost_name, This_MOD.id) then return end
+        Entity.tags = { [This_MOD.id] = true }
+        return
+    end
+
+    --- Entidad
     if not Entity then return end
     if not Entity.valid then return end
     if not GMOD.has_id(Entity.name, This_MOD.id) then return end
@@ -221,58 +223,6 @@ function This_MOD.create_entity(Data)
             if not Input then Entity.rotate() end
         end
         return
-    end
-
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-end
-
-function This_MOD.create_blueprint(Data)
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    --- Validación
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
-    --- Variable a usar
-    local Blueprint = nil
-
-    --- Identificar el tipo de selección
-    local Flag_blueprint =
-        Data.Player.blueprint_to_setup and
-        Data.Player.blueprint_to_setup.valid_for_read
-
-    local Flag_cursor =
-        Data.Player.cursor_stack.valid_for_read and
-        Data.Player.cursor_stack.is_blueprint
-
-    --- Renombrar la selección
-    if Flag_blueprint then
-        Blueprint = Data.Player.blueprint_to_setup
-    elseif Flag_cursor then
-        Blueprint = Data.Player.cursor_stack
-    end
-
-    --- Validar la selección
-    if not Blueprint then return end
-    if not Blueprint.is_blueprint_setup() then return end
-
-    --- Listado de las entidades
-    local Entities = Blueprint.get_blueprint_entities()
-    if not Entities then return end
-
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
-
-
-
-
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    --- Guardar el canal al que está conectado
-    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
-    for _, entity in pairs(Entities or {}) do
-        if GMOD.has_id(entity.name, This_MOD.id) then
-            local Tags = { [This_MOD.id] = true }
-            Blueprint.set_blueprint_entity_tags(entity.entity_number, Tags)
-        end
     end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
