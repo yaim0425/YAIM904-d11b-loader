@@ -100,6 +100,7 @@ function This_MOD.load_events()
         defines.events.script_raised_built,
         defines.events.script_raised_revive,
         defines.events.on_space_platform_built_entity,
+        defines.events.on_post_entity_died,
     }, function(event)
         This_MOD.create_entity(GMOD.create_data(event, This_MOD))
     end)
@@ -126,9 +127,26 @@ function This_MOD.create_entity(Data)
     --- Validación
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    if not Entity then return end
-    if not Entity.valid then return end
+    --- Fantasma
+    local Ghost
+    if Data.Event.name == defines.events.on_post_entity_died then
+        local ghost = Data.Event.ghost
+        if not ghost or not ghost.valid then return end
+        Ghost = ghost
+    elseif Entity.name == "entity-ghost" then
+        Ghost = Entity
+    end
+
+    if Ghost then
+        if not GMOD.has_id(Ghost.ghost_name, This_MOD.id) then return end
+        Ghost.tags = { [This_MOD.id] = true }
+        return
+    end
+
+    --- Entidad
+    if not Entity or not Entity.valid then return end
     if not GMOD.has_id(Entity.name, This_MOD.id) then return end
+    if Data.Event.tags and Data.Event.tags[This_MOD.id] then return end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
