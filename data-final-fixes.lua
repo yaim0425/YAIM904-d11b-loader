@@ -382,6 +382,10 @@ function This_MOD.create_entity(space)
         { icon = This_MOD.icon_graphics.mask, tint = space.color },
     }
 
+    if mods["space-age"] then
+        Entity.max_belt_stack_size = data.raw["utility-constants"].default.max_belt_stack_size
+    end
+
     --- Cambiar la image
     Entity.structure = {
         back_patch = {
