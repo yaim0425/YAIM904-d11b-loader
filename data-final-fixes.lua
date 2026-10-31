@@ -118,29 +118,35 @@ function This_MOD.reference_values()
     --- Colores a usar
     This_MOD.colors = {
         --- Base
-        [""]                       = { r = 210, g = 180, b = 080 },
-        ["fast-"]                  = { r = 210, g = 060, b = 060 },
-        ["express-"]               = { r = 080, g = 180, b = 210 },
-        ["turbo-"]                 = { r = 160, g = 190, b = 080 },
+        [""]         = { r = 210, g = 180, b =  80 },
+        ["fast-"]    = { r = 210, g =  60, b =  60 },
+        ["express-"] = { r =  80, g = 180, b = 210 },
+        ["turbo-"]   = { r = 160, g = 190, b =  80 },
 
         --- Factorio+
-        ["basic-"]                 = { r = 185, g = 185, b = 185 },
-        ["supersonic-"]            = { r = 213, g = 041, b = 209 },
+        ["basic-"]      = { r = 185, g = 185, b = 185 },
+        ["supersonic-"] = { r = 213, g =  41, b = 209 },
 
         --- Krastorio 2
-        ["kr-advanced-"]           = { r = 160, g = 190, b = 080 },
-        ["kr-superior-"]           = { r = 213, g = 041, b = 209 },
+        ["kr-advanced-"] = { r = 160, g = 190, b =  80 },
+        ["kr-superior-"] = { r = 213, g =  41, b = 209 },
 
         --- Space Exploration
         ["se-space-"]              = { r = 200, g = 200, b = 200 },
-        ["se-deep-space--black"]   = { r = 000, g = 000, b = 000 },
+        ["se-deep-space--black"]   = { r =   0, g =   0, b =   0 },
         ["se-deep-space--white"]   = { r = 255, g = 255, b = 255 },
-        ["se-deep-space--red"]     = { r = 255, g = 000, b = 000 },
-        ["se-deep-space--magenta"] = { r = 255, g = 000, b = 255 },
-        ["se-deep-space--blue"]    = { r = 000, g = 000, b = 255 },
-        ["se-deep-space--cyan"]    = { r = 000, g = 255, b = 255 },
-        ["se-deep-space--green"]   = { r = 000, g = 255, b = 000 },
-        ["se-deep-space--yellow"]  = { r = 255, g = 255, b = 000 },
+        ["se-deep-space--red"]     = { r = 255, g =   0, b =   0 },
+        ["se-deep-space--magenta"] = { r = 255, g =   0, b = 255 },
+        ["se-deep-space--blue"]    = { r =   0, g =   0, b = 255 },
+        ["se-deep-space--cyan"]    = { r =   0, g = 255, b = 255 },
+        ["se-deep-space--green"]   = { r =   0, g = 255, b =   0 },
+        ["se-deep-space--yellow"]  = { r = 255, g = 255, b =   0 },
+
+        -- AdvancedBeltsSA
+        ["elite-underground"]    = { r =   7, g = 245, b =   7, a = 255 },
+        ["extreme-underground"]  = { r =  38, g = 255, b = 232, a = 255 },
+        ["supreme-underground"]  = { r = 199, g =  19, b = 215, a = 231 },
+        ["ultimate-underground"] = { r = 255, g = 113, b =  62, a = 255 },
     }
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
