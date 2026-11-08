@@ -55,10 +55,19 @@ function This_MOD.reference_values()
     --- Tipo de inventarios validos
     This_MOD.inventory = {
         [defines.inventory.chest] = true,
+        [defines.inventory.hub_main] = true,
         [defines.inventory.lab_input] = true,
-        [defines.inventory.furnace_source] = true,
+        [defines.inventory.cargo_unit] = true,
+        [defines.inventory.proxy_main] = true,
+        [defines.inventory.cargo_wagon] = true,
+        [defines.inventory.crafter_input] = true,
         [defines.inventory.rocket_silo_rocket] = true,
-        [defines.inventory.assembling_machine_input] = true
+        [defines.inventory.artillery_wagon_ammo] = true,
+        [defines.inventory.linked_container_main] = true,
+        [defines.inventory.artillery_turret_ammo] = true,
+        [defines.inventory.cargo_landing_pad_main] = true,
+        [defines.inventory.agricultural_tower_input] = true,
+        [defines.inventory.assembling_machine_dump] = true
     }
 
     --- Converción de la direcciones
