@@ -63,10 +63,10 @@ function This_MOD.reference_values()
 
     --- Converción de la direcciones
     This_MOD.dir2vector = {
-        [defines.direction.north] = { x = 0, y = -1 },
-        [defines.direction.south] = { x = 0, y = 1 },
-        [defines.direction.west]  = { x = -1, y = 0 },
-        [defines.direction.east]  = { x = 1, y = 0 }
+        [defines.direction.north] = { x =  0, y = -1 },
+        [defines.direction.south] = { x =  0, y =  1 },
+        [defines.direction.west]  = { x = -1, y =  0 },
+        [defines.direction.east]  = { x =  1, y =  0 }
     }
 
     --- Direcciones con las que funciona

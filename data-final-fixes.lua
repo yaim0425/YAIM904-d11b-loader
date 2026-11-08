@@ -28,7 +28,7 @@ function This_MOD.start()
     --- Modificar los elementos
     for _, spaces in pairs(This_MOD.to_be_processed) do
         for _, space in pairs(spaces) do
-            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
             --- Crear los elementos
             This_MOD.create_item(space)
@@ -36,12 +36,9 @@ function This_MOD.start()
             This_MOD.create_recipe(space)
             This_MOD.create_tech(space)
 
-            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         end
     end
-
-    --- Fijar las posiciones actual
-    GMOD.d00b.change_orders()
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -113,7 +110,7 @@ function This_MOD.reference_values()
 
     --- Subgrupo
     This_MOD.new_subgroup = This_MOD.prefix .. This_MOD.name
-    This_MOD.old_subgroup = GMOD.items["splitter"].subgroup
+    This_MOD.old_subgroup = GMOD.item["splitter"].subgroup
 
     --- Colores a usar
     This_MOD.colors = {
@@ -195,7 +192,7 @@ function This_MOD.get_elements()
             This_MOD.id .. "-" ..
             Name
 
-        if GMOD.entities[Name] then return end
+        if GMOD.entity[Name] then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -208,15 +205,19 @@ function This_MOD.get_elements()
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
         local Space = {}
+        Space.name = Name
         Space.item = item
         Space.entity = entity
-        Space.name = Name
 
         Space.belt = string.gsub(That_MOD.name, This_MOD.to_find, This_MOD.item_tech)
         Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt], true)
 
         Space.recipe = GMOD.recipes[Space.item.name]
         Space.recipe = Space.recipe and Space.recipe[1] or nil
+
+        for key, value in pairs(Space) do
+            Space[key] = GMOD.copy_with_format(value)
+        end
 
         Space.color = This_MOD.colors[Tier]
 
@@ -254,6 +255,7 @@ function This_MOD.get_elements()
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
     for _, entity in pairs(data.raw[This_MOD.under]) do
+        entity = GMOD.copy_with_format(entity) or {}
         validate_entity(GMOD.get_item_create(entity, "place_result"), entity)
     end
 
@@ -320,7 +322,17 @@ function This_MOD.create_item(space)
     --- Crear el subgrupo para el objeto
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    GMOD.duplicate_subgroup(This_MOD.old_subgroup, Item.subgroup)
+    --- Duplicar el subgrupo
+    if not GMOD.subgroups[Item.subgroup] then
+        GMOD.duplicate_subgroup(space.item.subgroup, Item.subgroup)
+
+        --- Renombrar
+        local Subgroup = GMOD.subgroups[Item.subgroup]
+        local oldOrder = GMOD.subgroups[space.item.subgroup].order or ""
+
+        --- Actualizar el order
+        Subgroup.order = oldOrder .. "-11"
+    end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -497,7 +509,7 @@ function This_MOD.create_entity(space)
             Name
 
         --- La entidad ya existe
-        if GMOD.entities[Name] then return Name end
+        if GMOD.entity[Name] then return Name end
 
         --- La entidad existirá
         for _, Spaces in pairs(This_MOD.to_be_processed) do
@@ -606,7 +618,7 @@ function This_MOD.create_recipe(space)
                 Name
 
             --- La entidad ya existe
-            if GMOD.entities[Name] then return Name end
+            if GMOD.entity[Name] then return Name end
 
             --- La entidad existirá
             for _, Spaces in pairs(This_MOD.to_be_processed) do
